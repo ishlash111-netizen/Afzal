@@ -1,0 +1,6 @@
+{
+  "name": "UZUNITED AI - Local LLM & Web Search Chatbot",
+  "description": "Lokal LLM (Ollama, llama.cpp) va bepul Web Search integratsiyasiga ega aqlli AI chatbot platformasi",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
