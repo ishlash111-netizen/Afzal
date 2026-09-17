@@ -32,80 +32,64 @@ export function generateClientResponse(params: {
     const file = attachments[0];
     if (file.isImage) {
       return {
-        answer: `${greeting}\n\nSiz yuborgan **"${file.name}"** tasviri muvaffaqiyatli qabul qilindi va to'liq tahlil qilindi.\n\n### 📸 Rasm tahlili va xulosalar:\n1. **Format va sifat:** Tasvir o'lchami ${(file.size / 1024).toFixed(1)} KB, formati: ${file.type || 'tasvir'}.\n2. **Vizual tarkib:** Rasm tizim tomonidan vizual ob'ektlar, ranglar balansi va matn elementlari (OCR) bo'yicha ko'rib chiqildi.\n3. **Amaliy tavsiya:** Agar ushbu rasmda biror muammo, kod xatosi, chek, hujjat yoki dizayn aks etgan bo'lsa, uning qaysi qismini chuqurroq o'rganish kerakligini ayting — to'liq hal qilib beraman!`,
+        answer: `${greeting}\n\nSiz yuborgan tasvir qabul qilindi (${(file.size / 1024).toFixed(1)} KB). Rasmda aynan qaysi ob'ekt, matn yoki muammoni tahlil qilish kerakligini aytsangiz, qisqa va lo'nda tushuntirib beraman.`,
         reasoningSteps,
       };
     } else {
-      let previewSnippet = "";
-      if (file.textContent) {
-        previewSnippet = file.textContent.slice(0, 300);
-      }
       return {
-        answer: `${greeting}\n\nSiz yuklagan **"${file.name}"** (${file.type || 'hujjat'}, ${(file.size / 1024).toFixed(1)} KB) tahlil qilindi.\n\n### 📄 Hujjat / Kod bo'yicha xulosa:\n- **Fayl tuzilishi:** Muvaffaqiyatli o'qildi va ma'lumotlar tartiblandi.\n${previewSnippet ? `- **Matn bo'lagi:** \n\`\`\`\n${previewSnippet}...\n\`\`\`\n` : ''}- **Tavsiya:** Ushbu fayl bo'yicha qisqacha xulosa (summary), tarjima, koddagi xatolarni to'g'rilash yoki tushuntirish kerak bo'lsa, aniq vazifani yozing!`,
+        answer: `${greeting}\n\n**"${file.name}"** hujjati qabul qilindi. Ushbu fayl bo'yicha qanday vazifani (qisqa xulosa, kod tekshiruvi yoki tarjima) bajarish kerak?`,
         reasoningSteps,
       };
     }
   }
 
-  // 2. Creators / Authors
+  // 2. Creators / Authors (FAQAT foydalanuvchi to'g'ridan-to'g'ri so'ragandagina aytiladi!)
   if (
     lower.includes("kim yaratgan") ||
     lower.includes("muallif") ||
     lower.includes("afzalbek") ||
     lower.includes("ozodbek") ||
     lower.includes("kim qilgan") ||
+    lower.includes("kim yasagan") ||
     lower.includes("yaratuvchi")
   ) {
     return {
-      answer: `✨ **UZUNITED AI** tizimini **Afzalbek Nematov** va **Ozodbek Shohobiddinovlar** yaratishgan!\n\n${userFirstName ? `Hurmatli ${userFirstName}, ` : ''}Ushbu sun'iy intellekt universal intellektual salohiyatga ega bo'lib, butun jahon bilimlari, dasturlash, biznes, ilm-fan va erkin insoniy muloqot uchun ishlab chiqilgan.`,
+      answer: `Meni **Afzalbek Nematov** va **Ozodbek Shohobiddinovlar** yaratishgan.`,
       reasoningSteps,
     };
   }
 
-  // 3. Greetings
+  // 3. Greetings (Mualliflar aytilmaydi!)
   if (lower.startsWith("salom") || lower.startsWith("assalom") || lower === "qalaysiz" || lower === "qalesiz") {
     return {
-      answer: `${greeting} Xush kelibsiz!\n\nMen **UZUNITED AI** — butun dunyo ma'lumotlari, axborot texnologiyalari, biznes reja, fan va ijodiy fikrlash bo'yicha universal yordamchingizman.\n\n✨ **Ushbu AI ni Afzalbek Nematov va Ozodbek Shohobiddinovlar yaratishgan.**\n\nBugun sizga qanday sohada yordam bera olaman? Istalgan savolingizni berishingiz yoki galereyangizdan rasm yuklashingiz mumkin!`,
+      answer: `${greeting} Men **UZUNITED AI** man. Sizga qanday yordam bera olaman?`,
       reasoningSteps,
     };
   }
 
-  // 4. Business Plan / Startups
+  // 4. Business Plan / Startups (Concise AI Overview)
   if (lower.includes("biznes") || lower.includes("startap") || lower.includes("investitsiya") || lower.includes("reja")) {
     return {
-      answer: `### 🚀 O'zbekistonda Muvaffaqiyatli Loyiha va Biznes Reja Bosqichlari:\n\n${userFirstName ? `Hurmatli ${userFirstName}, ` : ''}Har qanday biznes yoki startap g'oyani amalga oshirishda quyidagi asosiy bosqichlar hal qiluvchi ahamiyatga ega:\n\n1. **Muammo va Bozorni O'rganish (Market Research):**\n   - Bozor hajmi (TAM, SAM, SOM) va maqsadli auditoriyaning aniq og'riqli nuqtalarini (pain points) aniqlang.\n   - Mahalliy raqobatchilarni tahlil qiling va o'zingizning Ustunlik Taklifingizni (USP) belgilang.\n\n2. **MVP (Minimal Foydali Mahsulot):**\n   - Ortiqcha xarajat qilmasdan, 3-4 haftada mahsulotning eng muhim funksiyasini ishga tushiring va real mijozlardan fikr oling.\n\n3. **Moliyaviy Model va Daromad Manbalari:**\n   - Obuna (SaaS), komissiya yoki to'g'ridan-to'g'ri sotuv turlari.\n   - Oylik operatsion xarajatlar (OPEX) va boshlang'ich kapital (CAPEX) hisob-kitobi.\n\n4. **Qonuniy Ro'yxatdan O'tish va Imtiyozlar:**\n   - IT loyihalar uchun **IT Park rezidentligi** (0% daromad solig'i, 7.5% JShODS imtiyozlari);\n   - "Yoshlar daftari", Yoshlar ishlari agentligi va Innovatsiya vazirligi grantlari.\n\nSiz qaysi soha yoki yo'nalish bo'yicha startap qilmoqchisiz? Batafsil yozsangiz, moliyaviy hisob-kitobini ham qilib beraman!`,
+      answer: `Startapni muvaffaqiyatli boshlash uchun 3 ta asosiy qadam:\n\n1. **Muammo va bozor:** Mijozning aniq ehtiyojini aniqlab, raqobatchilardan ustun taklif shakllantirish;\n2. **MVP versiya:** Katta xarajatsiz dastlabki ishchi modelni tez chiqarish;\n3. **Mijozlar fikri:** Dastlabki mijozlar tahlili orqali mahsulotni yaxshilash.\n\nQaysi sohada biznes boshlamoqchisiz?`,
       reasoningSteps,
     };
   }
 
-  // 5. Programming / Code
+  // 5. Programming / Code (Concise)
   if (lower.includes("python") || lower.includes("javascript") || lower.includes("kod") || lower.includes("dastur") || lower.includes("react") || lower.includes("api") || lower.includes("sql") || lower.includes("scraper")) {
     return {
-      answer: `### 💻 Dasturlash va Kod Yechimi:\n\n${userFirstName ? `${userFirstName}, ` : ''}Siz so'ragan dasturlash masalasi bo'yicha toza va zamonaviy yechim:\n\n\`\`\`python
-# Python zamonaviy yechim namunasi
-import asyncio
-import aiohttp
-
-async def fetch_data(url: str):
-    async with aiohttp.ClientSession() as session:
-        async with session.get(url) as response:
-            if response.status == 200:
-                data = await response.json()
-                print("Muvaffaqiyatli ma'lumot yuklandi:", len(data))
-                return data
-            return None
-
-# Ishga tushirish
-if __name__ == "__main__":
-    print("Dastur ishga tushdi...")
-\`\`\`\n\n**Tavsiyalar:**\n- Asinxron arxitektura orqali yuqori tezlikka erishiladi.\n- Xatoliklarni ushlash uchun \`try...except\` bloklaridan foydalanish shart.\n\nKodingizda qanday qo'shimcha mantiq yoki ma'lumotlar bazasi integratsiyasi bo'lishi kerak?`,
+      answer: `Dasturlash bo'yicha toza va zamonaviy yechim:\n\n\`\`\`python
+# Qisqa va samarali kod
+def process_items(items):
+    return [x.strip() for x in items if x]
+\`\`\`\n\nKodingizdagi aniq xatolik yoki vazifani yozsangiz, darhol to'g'rilab beraman.`,
       reasoningSteps,
     };
   }
 
-  // 6. Science / History / General World Knowledge
+  // 6. Science / History / General World Knowledge (Concise AI Overview)
   return {
-    answer: `### 🌐 «${query}» Bo'yicha Tahliliy Ma'lumot:\n\n${userFirstName ? `Hurmatli ${userFirstName}, ` : ''}Siz bergan savol butun dunyo bilimlari va ilmiy manbalar asosida o'rganildi:\n\n1. **Asosiy mohiyat:** Ushbu mavzu zamonaviy fan va amaliyotda muhim o'rin tutadi. Uning rivojlanish tarixi, nazariy asoslari va amaliy qo'llanilishi bir nechta sohalar kesishmasida shakllangan.\n\n2. **Asosiy omillar:**\n   - Tizimli yondashuv va qonuniyatlarga tayanish;\n   - Xalqaro tajriba va zamonaviy tadqiqotlar natijalari;\n   - Amaliy hayotdagi samaradorlik va unumdorlik.\n\n3. **Xulosa:** Ushbu mavzuni chuqurroq o'rganishda ishonchli ilmiy metodologiyaga tayanish maqsadga muvofiqdir.\n\nUshbu mavzuning qaysi aniq jihati bo'yicha qo'shimcha savolingiz bor? Istalgan savolingizni batafsil davom ettirishingiz mumkin!`,
+    answer: `«${query}» bo'yicha qisqa xulosa:\n\nUshbu mavzuning asosiy mohiyati tizimli yondashuv va so'nggi ilmiy tadqiqotlarga tayanadi. Sizni aynan qaysi jihati qiziqtirmoqda?`,
     reasoningSteps,
   };
 }

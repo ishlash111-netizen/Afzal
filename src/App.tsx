@@ -20,7 +20,7 @@ export default function App() {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(!user);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
-  const [selectedModel, setSelectedModel] = useState('UzLLM v3.5 Pro');
+  const [selectedModel, setSelectedModel] = useState('UZUNITED AI v1.0');
   const [tokenCount, setTokenCount] = useState(842);
 
   const [sessionId, setSessionId] = useState<string>('default-uzunited-session');
@@ -36,8 +36,8 @@ export default function App() {
     })();
 
     const greeting = savedUser?.firstName 
-      ? `Assalomu alaykum, **${savedUser.firstName}**! Men **UZUNITED AI** — butun dunyo bilimlari va keng qamrovli tahlilga ega universal sun'iy intellekt assistentiman.\n\n✨ **Ushbu AI ni Afzalbek Nematov va Ozodbek Shohobiddinovlar yaratishgan.**\n\nMen sizning ismingiz va qiziqishlaringizni eslab qolaman. Istalgan savolingizni berishingiz, galereyangizdan rasm yoki hujjat fayllarini tahlil qilish uchun yuklashingiz mumkin!`
-      : "Assalomu alaykum! Men **UZUNITED AI** — butun dunyo bilimlari va keng qamrovli tahlilga ega universal sun'iy intellekt assistentiman.\n\n✨ **Ushbu AI ni Afzalbek Nematov va Ozodbek Shohobiddinovlar yaratishgan.**\n\nSiz bilan istalgan mavzuda insondek do'stona va chuqur muloqot qilishga tayyorman. Menga biznes reja, IT loyihalar, ilm-fan, tarix bo'yicha savolingizni bering yoki rasm/fayl yuklang!";
+      ? `Salom, **${savedUser.firstName}**! Men **UZUNITED AI** man. Bugun qanday mavzuda suhbatlashamiz yoki qanday yordam bera olaman?`
+      : "Salom! Men **UZUNITED AI** man — universal sun'iy intellekt yordamchingiz. Qanday mavzuda suhbatlashamiz yoki qanday savolingiz bor?";
 
     return [
       {
@@ -108,7 +108,7 @@ export default function App() {
       const executeRequest = async (isRetry = false): Promise<any> => {
         try {
           const controller = new AbortController();
-          const timeoutId = setTimeout(() => controller.abort(), 35000);
+          const timeoutId = setTimeout(() => controller.abort(), 12000);
 
           const res = await fetch('/api/chat', {
             method: 'POST',
@@ -208,7 +208,7 @@ export default function App() {
         {
           id: `msg-${Date.now()}`,
           role: 'assistant',
-          content: "Assalomu alaykum! Yangi suhbat boshlandi. UZUNITED AI ga istalgan savolingizni berishingiz mumkin.\n\n✨ Ushbu AI ni Afzalbek Nematov va Ozodbek Shohobiddinovlar yaratishgan.",
+          content: "Assalomu alaykum! Yangi suhbat boshlandi. Men **UZUNITED AI** man. Sizga qanday yordam bera olaman?",
           timestamp: new Date().toISOString(),
         }
       ]);

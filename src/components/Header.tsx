@@ -34,10 +34,10 @@ export const Header: React.FC<HeaderProps> = ({
   const [modelDropdownOpen, setModelDropdownOpen] = useState(false);
 
   const models = [
-    { id: 'UzLLM v3.5 Pro', label: 'UzLLM v3.5 Pro', desc: 'Eng yuqori aniqlikdagi o‘zbek modeli' },
-    { id: 'UZUNITED Fast 3B', label: 'UZUNITED Fast 3B', desc: 'Tezkor lokal javoblar' },
-    { id: 'DeepSeek R1 Hybrid', label: 'DeepSeek R1 Hybrid', desc: 'Mantiqiy chuqur fikrlash' },
-    { id: 'Llama 3.2 3B Local', label: 'Llama 3.2 3B Local', desc: 'Oflayn / Lokal AI' },
+    { id: 'UZUNITED AI v1.0', label: 'UZUNITED AI v1.0', desc: 'Tezkor, insondek jonli va tahliliy intellekt' },
+    { id: 'UZUNITED Turbo Flash', label: 'UZUNITED Turbo Flash', desc: 'Ultra-tezkor muloqot modeli' },
+    { id: 'UZUNITED Web Search', label: 'UZUNITED Web Search', desc: 'Faktlar va internet xulosalari' },
+    { id: 'UZUNITED Pro', label: 'UZUNITED Pro', desc: 'Chuqur fikrlash va dasturlash' },
   ];
 
   return (

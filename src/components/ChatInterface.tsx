@@ -314,13 +314,13 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
   };
 
   const quickPrompts = [
-    { label: "📸 Rasm tahlili", icon: ImageIcon, isImageTrigger: true, prompt: "Ushbu rasmni batafsil tahlil qilib bering va undagi barcha narsalarni tushuntiring." },
-    { label: "📄 Fayl/Kod tahlili", icon: FileText, isFileTrigger: true, prompt: "Ushbu fayl mazmunini to'liq tekshirib, xulosalar bering." },
-    { label: "Biznes reja", icon: FileText, prompt: "O'zbekistonda yangi startap ochish uchun bosqichma-bosqich yo'l xaritasi tuzib ber." },
-    { label: "Investitsiya jalb qilish", icon: DollarSign, prompt: "O'zbekistonda IT loyihalarga investitsiya jalb qilish va grantlar olish tartibi qanday?" },
-    { label: "Kod tekshirish", icon: Code, prompt: "Python da zamonaviy asinxron Web Scraper kodini yozib ber va xavfsizligini tekshir." },
-    { label: "Mualliflar haqida", icon: Users, prompt: "Ushbu AI ni kim yaratgan va uning mualliflari kimlar?" },
-    { label: "Koinot & Fan", icon: Sparkles, prompt: "Koinot qanday paydo bo'lgan? Katta portlash nazariyasini ilmiy faktlar bilan tushuntirib ber." },
+    { label: "📸 Rasm tahlili", icon: ImageIcon, isImageTrigger: true, prompt: "Ushbu rasmni tahlil qilib bering." },
+    { label: "📄 Fayl/Kod tahlili", icon: FileText, isFileTrigger: true, prompt: "Ushbu faylni tekshirib bering." },
+    { label: "Seni kim yaratgan?", icon: Users, prompt: "Seni kim yaratgan?" },
+    { label: "Biznes reja", icon: FileText, prompt: "O'zbekistonda yangi startap ochish bosqichlari qanday?" },
+    { label: "Investitsiya jalb qilish", icon: DollarSign, prompt: "O'zbekistonda IT loyihalarga investitsiya jalb qilish tartibi qanday?" },
+    { label: "Kod tekshirish", icon: Code, prompt: "Python da zamonaviy funksiya yozib ber." },
+    { label: "Koinot & Fan", icon: Sparkles, prompt: "Koinot qanday paydo bo'lgan? Qisqa va lo'nda tushuntirib ber." },
   ];
 
   // Helper to format timestamp like "11:42"
@@ -636,34 +636,21 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
           );
         })}
 
-        {/* Loading Indicator */}
+        {/* Loading Indicator: Compact 3 round dots • • • typing animation */}
         {isLoading && (
-          <div className="flex items-start gap-3 w-full">
-            <div className="w-9 h-9 rounded-full bg-gradient-to-tr from-blue-600 via-indigo-600 to-pink-500 p-0.5 shadow-sm shrink-0">
+          <div className="flex items-start gap-3 w-full animate-in fade-in duration-200">
+            <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-blue-600 via-indigo-600 to-pink-500 p-0.5 shadow-xs shrink-0 mt-0.5">
               <div className="w-full h-full bg-white rounded-full flex items-center justify-center">
-                <span className="font-black text-sm bg-gradient-to-tr from-blue-600 to-pink-500 bg-clip-text text-transparent animate-pulse">
+                <span className="font-black text-xs bg-gradient-to-tr from-blue-600 to-pink-500 bg-clip-text text-transparent">
                   U
                 </span>
               </div>
             </div>
 
-            <div className="bg-white border border-slate-200 p-4 rounded-2xl shadow-xs space-y-2.5 max-w-lg w-full">
-              <div className="flex items-center gap-2 text-xs font-semibold text-blue-600">
-                <RotateCw className="w-3.5 h-3.5 animate-spin" />
-                <span>UZUNITED AI tahlil qilmoqda...</span>
-              </div>
-              <div className="bg-slate-50 p-2.5 rounded-xl border border-slate-100 text-xs font-mono space-y-1 text-slate-600">
-                {activeReasoningSteps.length > 0 ? (
-                  activeReasoningSteps.map((st, i) => (
-                    <div key={i} className="flex items-start gap-1.5">
-                      <span className="text-emerald-600 font-bold">✓</span>
-                      <span>{st}</span>
-                    </div>
-                  ))
-                ) : (
-                  <span className="italic text-slate-400">Butun dunyo bilimlari sintezlanmoqda...</span>
-                )}
-              </div>
+            <div className="bg-white border border-slate-200/90 px-4 py-3 rounded-2xl rounded-tl-sm shadow-xs flex items-center gap-1.5 h-11">
+              <span className="w-2.5 h-2.5 bg-blue-600 rounded-full typing-dot-1"></span>
+              <span className="w-2.5 h-2.5 bg-indigo-600 rounded-full typing-dot-2"></span>
+              <span className="w-2.5 h-2.5 bg-pink-500 rounded-full typing-dot-3"></span>
             </div>
           </div>
         )}

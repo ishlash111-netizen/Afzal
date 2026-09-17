@@ -34,7 +34,7 @@ export const ArchitectureViewer: React.FC = () => {
               UZUNITED AI Tizimining IshlashSxemasi (Data Flow)
             </h3>
             <p className="text-sm text-slate-300 leading-relaxed mb-4">
-              Loyiha butunlay lokal kompyuterda ishlaydi va <strong>hech qanday pullik API kalitsiz</strong> (OpenAI, Gemini yoki Bing API’siz) internetdan ma’lumot qidirib, foydalanuvchiga tabiiy o‘zbek tilida javob beradi.
+              Loyiha butunlay lokal kompyuterda ishlaydi va <strong>hech qanday pullik API kalitsiz</strong> (OpenAI, Google yoki Bing API’siz) internetdan ma’lumot qidirib, foydalanuvchiga tabiiy o‘zbek tilida javob beradi.
             </p>
 
             {/* Visual Flow Diagram */}
